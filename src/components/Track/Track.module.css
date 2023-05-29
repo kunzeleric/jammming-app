@@ -3,11 +3,14 @@
     text-align: left;
     padding-right: 1rem;
     justify-content: space-between;
-    border-top: 1px solid var(--purple-500);
-    border-bottom: 1px solid var(--purple-500);
     color: var(--white);
-    
     transition: transform 0.2s ease-in-out;
+    border-bottom: 1px solid var(--purple-500);
+}
+
+.trackWrapper:first-child{
+    border-top: 1px solid var(--purple-500);
+
 }
 
 .trackWrapper:hover{

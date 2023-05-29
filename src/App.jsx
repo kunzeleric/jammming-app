@@ -1,16 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import styles from './App.module.css'
 import { Deezer } from './util/Deezer'
-import { TrackList } from './components/TrackList/TrackList';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
+import { Playlist } from './components/Playlist/Playlist';
+import { SearchResults } from './components/SearchResults/SearchResults';
 
 function App() {
-  const [tracks, setTracks] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [playlistTracks, setPlaylistTracks] = useState([]);
+  
+  const addTrack = useCallback((track) => {
+    if(playlistTracks.some((trackAdded) => trackAdded.id === track.id )){
+    return;
+    }
+    setPlaylistTracks((prevTracks) => [...prevTracks, track]);
+  }, [playlistTracks])
+
+  const removeTrack = useCallback((track) => {
+    setPlaylistTracks(playlistTracks.filter((removedTrack) => removedTrack.id !== track.id))
+  }, [])
 
   async function fetchData(searchQuery) {
     const { data } = await Deezer.searchTrack(searchQuery);
-    setTracks(data);
+    setSearchResults(data);
   }
 
   useEffect(() => {
@@ -29,11 +42,12 @@ function App() {
         </div>
 
         <div className={styles.section}>
-          <SimpleBar>
-            <TrackList trackList={tracks} />
+          <SimpleBar className={styles.scrollbar}>
+            <SearchResults searchResults={searchResults} onAdd={addTrack}/>
           </SimpleBar>
-            <div>Direita</div>
-
+          <SimpleBar className={styles.scrollbar}>
+            <Playlist playlistTracks={playlistTracks} onRemove={removeTrack}/>
+          </SimpleBar>
         </div>
       </main>
     </>
