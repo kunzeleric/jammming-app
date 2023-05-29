@@ -1,11 +1,23 @@
 import axios from 'axios';
 
-const BASE_URL = "https://deezerdevs-deezer.p.rapidapi.com/"
-const API_KEY = "0bad04c920mshe1e5ae991190eb6p119effjsnde8dae1141bb"
-const withBaseUrl = (path) => `${BASE_URL}${path}?api_key=${API_KEY}`;
+export class Deezer {
 
-export class Deezer{
-    static searchTrack(track){
-        return axios(withBaseUrl(`search?q=${track}&index=25`));
+    static async searchTrack(query) {
+        const options = {
+            method: 'GET',
+            url: `https://deezerdevs-deezer.p.rapidapi.com/search?`,
+            params: { q: query },
+            headers: {
+                'X-RapidAPI-Key': '0bad04c920mshe1e5ae991190eb6p119effjsnde8dae1141bb',
+                'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
+            }
+        };
+
+        try {
+            const response = await axios.request(options);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+        }
     }
 }

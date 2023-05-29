@@ -1,0 +1,58 @@
+.trackWrapper{
+    display: flex;
+    text-align: left;
+    padding-right: 1rem;
+    justify-content: space-between;
+    border-top: 1px solid var(--purple-500);
+    border-bottom: 1px solid var(--purple-500);
+    color: var(--white);
+    
+    transition: transform 0.2s ease-in-out;
+}
+
+.trackWrapper:hover{
+    transform: scale(1.05);
+}
+
+.trackContainer {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.trackContainer > img {
+    border-radius: 8px;
+}
+
+.trackInfo {
+    padding-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+}
+
+.song {
+    font-size: 1.275rem;
+}
+
+.artist {
+    font-size: 1rem;
+}
+
+.album {
+    font-size: 0.75rem;
+}
+
+.addIcon {
+    background: transparent;
+    border: 0;
+    color: var(--purple-500);
+    cursor: pointer;
+
+    transition: color 0.2s;
+}
+
+.addIcon:hover {
+    color: var(--purple-200);
+}
