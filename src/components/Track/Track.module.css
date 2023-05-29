@@ -13,18 +13,15 @@
 
 }
 
-.trackWrapper:hover{
-    transform: scale(1.05);
-}
-
 .trackContainer {
     display: flex;
     gap: 1.5rem;
     align-items: center;
 }
 
-.trackContainer > img {
+.trackContainer img {
     border-radius: 8px;
+    height: 70%;
 }
 
 .trackInfo {
@@ -47,15 +44,17 @@
     font-size: 0.75rem;
 }
 
-.addIcon {
+.icon {
     background: transparent;
     border: 0;
-    color: var(--purple-500);
+    color: var(--white);
     cursor: pointer;
 
-    transition: color 0.2s;
+    transition: all 0.2s;
 }
 
-.addIcon:hover {
-    color: var(--purple-200);
+.icon:hover {
+    color: orange;
+    transform: scale(1.15);
 }
+

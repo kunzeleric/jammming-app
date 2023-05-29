@@ -27,9 +27,8 @@ function App() {
   }, [playlistTracks]);
 
   const removeTrack = useCallback((track) => {
-    setPlaylistTracks(
-      playlistTracks.filter((removedTrack) => removedTrack.id !== track.id)
-      )
+    setPlaylistTracks((prevTracks) => prevTracks.filter((removedTrack) => removedTrack.id !== track.id)
+    )
   }, []);
 
   const resetTracks = useCallback((validator) => {
@@ -44,8 +43,8 @@ function App() {
 
       <main className={styles.mainContent}>
         <div className={styles.menu}>
-          <SearchBar 
-            onSearch={search} 
+          <SearchBar
+            onSearch={search}
             isTracklistVisible={isVisible}
             isReset={isReset}
             onReset={resetTracks}
@@ -55,23 +54,29 @@ function App() {
         <div className={styles.section}>
           {
 
-          isReset ? <SimpleBar className={styles.scrollbar}>
-            <SearchResults
-              searchResults={searchResults}
-              onAdd={addTrack}
-              isReset={isReset}
-              onReset={resetTracks}
-            />
-          </SimpleBar>
-          : null
+            isReset ? <SimpleBar className={styles.scrollbar}>
+              <SearchResults
+                searchResults={searchResults}
+                onAdd={addTrack}
+                isReset={isReset}
+                onReset={resetTracks}
+                title="Search Results"
+              />
+            </SimpleBar>
+              : null
           }
-          <SimpleBar className={styles.scrollbar}>
-            <Playlist
-              playlistTracks={playlistTracks}
-              onRemove={removeTrack}
-              isTracklistVisible={isVisible}
-            />
-          </SimpleBar>
+
+          {playlistTracks.length > 0 ?
+            <SimpleBar className={styles.scrollbar}>
+              <Playlist
+                playlistTracks={playlistTracks}
+                onRemove={removeTrack}
+                title="My Playlist"
+              />
+            </SimpleBar>
+            : null
+          }
+
         </div>
       </main>
     </>

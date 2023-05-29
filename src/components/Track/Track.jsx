@@ -16,11 +16,11 @@ export const Track = (props) => {
   const renderButton = () => {
   if(props.removeHandler) {
     return (
-    <button className={styles.addIcon} onClick={removeTrack}><MinusSquare size={30} weight="bold" /></button>
+    <button className={styles.icon } onClick={removeTrack}><MinusSquare size={30} weight="bold" /></button>
     )
   }
   return (
-    <button className={styles.addIcon} onClick={addTrack}><PlusSquare size={30} weight="bold" /></button>
+    <button className={styles.icon } onClick={addTrack}><PlusSquare size={30} weight="bold" /></button>
   )
 }
 

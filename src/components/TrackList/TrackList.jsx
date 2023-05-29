@@ -6,7 +6,7 @@ import styles from './TrackList.module.css';
 export const TrackList = (props) => {
   return (
     <div className={styles.tracklistWrapper}>
-      <h2 className={styles.tracklistTitle}>Results</h2>
+      <h2 className={styles.tracklistTitle}>{props.title}</h2>
       <div className={styles.tracklistResults}>
         {
           props.tracks.map((track) => {
