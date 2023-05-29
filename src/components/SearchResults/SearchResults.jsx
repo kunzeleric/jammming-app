@@ -2,7 +2,13 @@
 import { TrackList } from "../TrackList/TrackList"
 
 export const SearchResults = (props) => {
-  return (
-    <TrackList onAdd={props.onAdd} tracks={props.searchResults} />
-  )
+  if (props.isReset) {
+    return (<TrackList
+      onAdd={props.onAdd}
+      tracks={props.searchResults}
+    />)
+  }
+
+  return null;
+
 }

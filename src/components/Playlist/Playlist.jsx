@@ -2,11 +2,16 @@
 import { TrackList } from '../TrackList/TrackList';
 
 export const Playlist = (props) => {
-  return (
-    <TrackList 
-      tracks={props.playlistTracks}
-      onRemove={props.onRemove}
-      removeHandler={true}
-    />
-  )
+
+  if (props.isTracklistVisible) {
+    return (
+      <TrackList
+        tracks={props.playlistTracks}
+        onRemove={props.onRemove}
+        removeHandler={true}
+      />
+    )
+  }
+
+  else {return null}
 }
