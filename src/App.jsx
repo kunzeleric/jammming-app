@@ -35,6 +35,10 @@ function App() {
     setIsReset(validator);
   }, [])
 
+  const resetPlaylist = () => {
+    setPlaylistTracks([])
+  }
+
   return (
     <>
       <header className={styles.header}>
@@ -68,6 +72,7 @@ function App() {
 
           {playlistTracks.length > 0 ?
             <SimpleBar className={styles.scrollbar}>
+              <button className={styles.clearBtn} onClick={resetPlaylist}>Clear</button>
               <Playlist
                 playlistTracks={playlistTracks}
                 onRemove={removeTrack}
