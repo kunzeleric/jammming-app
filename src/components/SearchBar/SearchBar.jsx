@@ -12,7 +12,7 @@ export const SearchBar = (props) => {
             props.onReset(true);
             document.querySelector('input').value = "";
         }
-        else {return;}
+        else { return; }
     }, [props.onSearch, searchSong])
 
     const handleSearch = useCallback((event) => {
@@ -20,7 +20,8 @@ export const SearchBar = (props) => {
     }, []);
 
     const reset = useCallback(() => {
-        props.onReset()
+        props.onReset(false);
+        setSearchSong("");
     }, [props.onReset, props.isReset])
 
     return (
@@ -28,7 +29,11 @@ export const SearchBar = (props) => {
             <input type="text" placeholder="Search here" onChange={handleSearch} />
             <button className={styles.searchButton} onClick={search}>SEARCH SONGS</button>
             {
-                props.isReset ? <button className={styles.resetButton} onClick={reset}>RESET SEARCH</button>
+                props.isReset ?
+                    <button
+                        className={styles.resetButton}
+                        onClick={reset}>RESET SEARCH
+                    </button>
                     : null
             }
         </div>

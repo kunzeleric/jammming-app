@@ -21,7 +21,7 @@
 
 .trackContainer img {
     border-radius: 8px;
-    height: 70%;
+    height: 80%;
 }
 
 .trackInfo {
@@ -58,3 +58,21 @@
     transform: scale(1.15);
 }
 
+.btns{
+    display: flex;
+    gap: 1rem;
+}
+
+.playerBtn{
+    background: transparent;
+    border: 0;
+    color: var(--white);
+    cursor: pointer;
+
+    transition: all 0.2s;
+}
+
+.playerBtn:hover{
+    color: orange;
+    transform: scale(1.15);
+}

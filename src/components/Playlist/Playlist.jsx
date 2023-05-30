@@ -2,7 +2,6 @@
 import { TrackList } from '../TrackList/TrackList';
 
 export const Playlist = (props) => {
-
     return (
       <TrackList
         tracks={props.playlistTracks}
