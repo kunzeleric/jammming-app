@@ -11,7 +11,7 @@ As a challenged proposed by Codecademy, this project was meant to practice React
 ## Technologies \ Others
 
 - React
-- <a href="https://rapidapi.com/deezerdevs/api/deezer-1" target="_blank">Deezer Free API</a>
+- <a href="https://rapidapi.com/deezerdevs/api/deezer-1">Deezer Free API</a>
 - Axios
 - Phosphor Icons
 - SimpleBar React
@@ -28,8 +28,8 @@ After cloning or downloading the project, use the commands below in the terminal
 ## Takeaways
 
 - Learned to use the hook useCallback in React.
-- Practiced some API consumption.
-- Obtained more knowledge in components and their properties.
+- Practiced API consumption.
+- Obtained more knowledge about components and their properties.
 
 ## Author
 
