@@ -10,14 +10,12 @@ import { SearchBar } from './components/SearchBar/SearchBar';
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [playlistTracks, setPlaylistTracks] = useState([]);
-  const [isVisible, setIsVisible] = useState(false);
   const [isReset, setIsReset] = useState(false);
 
-  const search = useCallback(async (searchQuery) => {
+  async function search(searchQuery) {
     const { data } = await Deezer.searchTrack(searchQuery);
-    setIsVisible(true);
     setSearchResults(data);
-  }, []);
+  }
 
   const addTrack = useCallback((track) => {
     if (playlistTracks.some((trackAdded) => trackAdded.id === track.id)) {
@@ -39,53 +37,51 @@ function App() {
     setPlaylistTracks([])
   }
 
-  return (
-    <>
-      <header className={styles.header}>
-        <h1>Ja<strong>mmm</strong>ing</h1>
-      </header>
+    return (
+      <>
+        <header className={styles.header}>
+          <h1>Ja<strong>mmm</strong>ing</h1>
+        </header>
 
-      <main className={styles.mainContent}>
-        <div className={styles.menu}>
-          <SearchBar
-            onSearch={search}
-            isTracklistVisible={isVisible}
-            isReset={isReset}
-            onReset={resetTracks}
-          />
-        </div>
+        <main className={styles.mainContent}>
+          <div className={styles.menu}>
+            <SearchBar
+              onSearch={search}
+              isReset={isReset}
+              onReset={resetTracks}
+            />
+          </div>
+          <div className={styles.section}>
+            {
+              isReset ?
+                <SimpleBar className={styles.scrollbar}>
+                  <SearchResults
+                    searchResults={searchResults}
+                    onAdd={addTrack}
+                    isReset={isReset}
+                    onReset={resetTracks}
+                    title="Search Results"
+                  />
+                </SimpleBar>
+                : null
+            }
 
-        <div className={styles.section}>
-          {
-
-            isReset ? <SimpleBar className={styles.scrollbar}>
-              <SearchResults
-                searchResults={searchResults}
-                onAdd={addTrack}
-                isReset={isReset}
-                onReset={resetTracks}
-                title="Search Results"
-              />
-            </SimpleBar>
-              : null
-          }
-
-          {playlistTracks.length > 0 ?
-            <SimpleBar className={styles.scrollbar}>
-              <button className={styles.clearBtn} onClick={resetPlaylist}>Clear</button>
-              <Playlist
-                playlistTracks={playlistTracks}
-                onRemove={removeTrack}
-                title="My Playlist"
-              />
-            </SimpleBar>
-            : null
-          }
-
-        </div>
-      </main>
-    </>
-  )
-}
+            {
+              playlistTracks.length > 0 ?
+                <SimpleBar className={styles.scrollbar}>
+                  <button className={styles.clearBtn} onClick={resetPlaylist}>Clear</button>
+                  <Playlist
+                    playlistTracks={playlistTracks}
+                    onRemove={removeTrack}
+                    title="My Playlist"
+                  />
+                </SimpleBar>
+                : null
+            }
+          </div>
+        </main>
+      </>
+    )
+  }
 
 export default App

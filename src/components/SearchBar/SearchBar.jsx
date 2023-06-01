@@ -4,15 +4,14 @@ import styles from './SearchBar.module.css'
 
 export const SearchBar = (props) => {
     const [searchSong, setSearchSong] = useState("");
-
+    const input = document.querySelector('input');
 
     const search = useCallback(() => {
         if (searchSong.trim()) {
             props.onSearch(searchSong);
             props.onReset(true);
-            document.querySelector('input').value = "";
-        }
-        else { return; }
+            input.value = "";
+        } else return;
     }, [props.onSearch, searchSong])
 
     const handleSearch = useCallback((event) => {
@@ -26,16 +25,16 @@ export const SearchBar = (props) => {
 
     return (
         <div className={styles.searchWrapper}>
-            <input type="text" placeholder="Search here" onChange={handleSearch} />
-            <button className={styles.searchButton} onClick={search}>SEARCH SONGS</button>
-            {
-                props.isReset ?
-                    <button
-                        className={styles.resetButton}
-                        onClick={reset}>RESET SEARCH
-                    </button>
-                    : null
-            }
+                <input type="text" placeholder="Search here" onChange={handleSearch} />
+                <button className={styles.searchButton} onClick={search}>SEARCH SONGS</button>
+                {
+                    props.isReset ?
+                        <button
+                            className={styles.resetButton}
+                            onClick={reset}>RESET SEARCH
+                        </button>
+                        : null
+                }
         </div>
     )
 }
