@@ -7,10 +7,12 @@ export const SearchBar = (props) => {
     const input = document.querySelector('input');
 
     const search = useCallback(() => {
+        console.log(searchSong);
         if (searchSong.trim()) {
             props.onSearch(searchSong);
             props.onReset(true);
             input.value = "";
+            setSearchSong("");
         } else return;
     }, [props.onSearch, searchSong])
 
